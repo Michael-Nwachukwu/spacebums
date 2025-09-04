@@ -41,8 +41,7 @@ export function AppHeader({ navItems, onNavClick }: AppHeaderProps) {
         {/* Right side - User section */}
         <div className="flex items-center space-x-4">
           <div className="navbar-end grow">
-            <RainbowKitCustomConnectButton />
-            {/* {isLocalNetwork && <FaucetButton />} */}
+            <RainbowKitCustomConnectButton bg="bg-[#070907]" />
           </div>
         </div>
       </div>

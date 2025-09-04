@@ -3668,6 +3668,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@paper-design/shaders-react@npm:^0.0.47":
+  version: 0.0.47
+  resolution: "@paper-design/shaders-react@npm:0.0.47"
+  dependencies:
+    "@paper-design/shaders": 0.0.47
+  peerDependencies:
+    "@types/react": ^18 || ^19
+    react: ^18 || ^19
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 3a997dbd8533ca01df4e685b89409973443a81b171717e63d798b0e52c8ab6f9fb2e2068089c14e13696c5ccce8161dd3424a82e4df57b1499c79e5eb2b4edfd
+  languageName: node
+  linkType: hard
+
+"@paper-design/shaders@npm:0.0.47":
+  version: 0.0.47
+  resolution: "@paper-design/shaders@npm:0.0.47"
+  checksum: d41bcf8cca68d8e9eb665eff721fcb4bc10b9d989a3e0fe40d02aa6e313dc626fb2606b288c0151c1b5c474e3a923a0b33c23ccca6324f1c7a0c2f15b5c6f3a6
+  languageName: node
+  linkType: hard
+
 "@paulmillr/qr@npm:^0.2.1":
   version: 0.2.1
   resolution: "@paulmillr/qr@npm:0.2.1"
@@ -4757,6 +4779,7 @@ __metadata:
   dependencies:
     "@heroicons/react": ~2.1.5
     "@hookform/resolvers": ^5.2.1
+    "@paper-design/shaders-react": ^0.0.47
     "@radix-ui/react-dialog": ^1.1.15
     "@radix-ui/react-label": ^2.1.7
     "@radix-ui/react-popover": ^1.1.15

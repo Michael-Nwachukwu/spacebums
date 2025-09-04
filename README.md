@@ -1,80 +1,204 @@
-# 🏗 Scaffold-ETH 2
+# 🚀 Space Bums - Instant Liquidity Token Launchpad
 
-<h4 align="center">
+A decentralized platform for fair and instant token launches powered by bonding curves and automated liquidity.
+
+<p align="center">
   <a href="https://docs.scaffoldeth.io">Documentation</a> |
   <a href="https://scaffoldeth.io">Website</a>
-</h4>
+</p>
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+🧪 Space Bums is a revolutionary decentralized token launchpad designed for fundraising that ensures instant liquidity for new token projects. This is achieved through an innovative Bancor-style bonding curve and automated, on-chain liquidity provision to our native DEX, Bumdex. The platform incentivizes early participation while prioritizing user security with a built-in refund mechanism.
 
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
+Visit - `link here`
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+The name Spacebums was motivate dby giving the app a space-theme as its a launchpad, its only fair the space where the rockets shoots into is occupied by space-bums, space-chums, and all space-buds 😉
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+⚙️ Built using NextJS, RainbowKit, Foundry, Wagmi, Viem, and TypeScript.
 
-## Requirements
+## 🌟 Key Features
+*   ✅ **Bonding Curve Pricing:** A dynamic Bancor-style bonding curve incentivizes early investors with lower token prices and a higher token yield per USDC. The price increases with each token purchase.
+*   💧 **Instant Liquidity:** Liquidity is automatically deployed upon meeting either of two conditions: the campaign's target raise is reached or 50% of the token supply is sold.
+*   🔄 **Automated Liquidity Provision:** The smart contract automatically creates a liquidity pool on our platform DEX, Bumdex, using a fixed ratio of 50% of the raised USDC and 25% of the total token supply.
+*   🛡️ **Refund Mechanism:** A built-in security feature allows users to claim a full refund of their contributed USDC if a campaign is canceled or fails to meet its funding goals.
+*   🎖️ **OG Points System:** A unique reward system that distributes 30% of all platform fees back to users who hold a high number of OG points, incentivizing active participation.
+*   🧱 **Campaign Management:** A comprehensive interface to create, fund, and manage token launch campaigns, from setting goals to monitoring progress.
+*   💰 **USDC Integration:** Native support for USDC ensures stable and predictable fundraising for both creators and investors.
 
-Before you begin, you need to install the following tools:
+## 🏗️ Architecture
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+### Smart Contracts
+*   **Launchpad.sol:** The main launchpad contract containing core business logic for campaign creation, funding, and the bonding curve mechanism.
+*   **LaunchpadV2.sol:** An enhanced version of the core contract, incorporating a refined OG points distribution model and other optimizations.
+*   **Token.sol:** An ERC20 token factory contract responsible for minting the campaign-specific tokens.
+*   **LaunchpadCore.sol:** A utility library housing core mathematical functions for precise bonding curve calculations.
+# BUMDEX
+*   **BumdexFactory.sol:** A factory for creating liquidity pairs.
+*   **BumdexPair.sol:** A contract to be cloned by the `BumdexFactory` representing a liquidity pair.
+*   **BumdexRouter.sol:** The Bumdex router that we communicate withe the dex on each pair..
 
-## Quickstart
+### Frontend
+*   **Dashboard:** A centralized hub for users to create new campaigns, monitor the status of active campaigns, and track their portfolio performance.
+*   **Campaign Interface:** An interactive interface for users to participate in campaigns by purchasing tokens and monitoring their favorite campaigns.
+*   **Trading & Pool Analytics:** A dedicated section for post-launch activities, including direct token swaps, adding/removing liquidity, and real-time monitoring of pool data on Bumdex.
 
-To get started with Scaffold-ETH 2, follow the steps below:
+## 🚀 Quickstart
 
-1. Install dependencies if it was skipped in CLI:
+### Prerequisites
+*   Node (>= v20.18.3)
+*   Yarn
+*   Git
 
+### Installation
+1. Clone the repository
 ```
-cd my-dapp-example
+git clone <your-repo-url>
+cd space-bums
 yarn install
 ```
 
-2. Run a local network in the first terminal:
-
+Start local blockchain
 ```
 yarn chain
 ```
 
-This command starts a local Ethereum network using Hardhat. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/hardhat/hardhat.config.ts`.
-
-3. On a second terminal, deploy the test contract:
-
+Deploy contracts
 ```
 yarn deploy
 ```
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/hardhat/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/hardhat/deploy` to deploy the contract to the network. You can also customize the deploy script.
-
-4. On a third terminal, start your NextJS app:
-
+Start the frontend
 ```
 yarn start
 ```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
 
-Run smart contract test with `yarn hardhat:test`
+Visit your app at: http://localhost:3000
 
-- Edit your smart contracts in `packages/hardhat/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/hardhat/deploy`
+## 📖 How It Works
+
+1.  **Campaign Creation & Funding**
+    A creator sets a funding target (in USDC), maximum token supply, token name, and symbol.
+
+    The smart contract automatically allocates the total supply as follows:
+    *   50% for public sale
+    *   20% for creator allocation
+    *   25% for instant liquidity
+    *   5% for platform fees
+
+2.  **The Bonding Curve Mechanism**
+    The public sale utilizes a Bancor-style bonding curve where the token price is a function of the number of tokens sold.
+
+    This creates a favorable environment for early investors, who receive more tokens per USDC. The price gradually increases as the campaign progresses, reflecting growing demand.
+
+3.  **Instant Liquidity Deployment**
+    The liquidity provision is automatically triggered by a smart contract at the earliest of two conditions:
+    *   The campaign's target funding amount is met.
+    *   50% of the public sale token supply has been sold.
+
+    The contract then automatically creates a new trading pair on Bumdex, seeding it with a 50/50 split of the raised USDC and the 25% token supply allocated for liquidity. This ensures immediate trading and price discovery.
+
+4.  **Post-Launch Trading & Refunds**
+    Once liquidity is live, users can trade the new token pair on Bumdex or add their own liquidity to earn trading fees.
+
+    In the event of a failed or canceled campaign, the refund mechanism allows any user who contributed USDC to go to the interface and claim their contribution back, offering a secure environment for investment.
+
+🎖️ **The OG Points System in Detail**
+The OG Points system is the platform's core reward and incentive mechanism, designed to benefit the most active and supportive community members.
+
+1.  **Campaign Sponsorship**
+    A campaign creator can "sponsor" their launch for a $50 fee.
+
+    Sponsorship comes with two benefits:
+    *   Prioritized visibility on the platform
+    *   A dedicated OG Point bank of 1,000 points.
+
+2.  **Draining the OG Point Bank**
+    When a user buys into a sponsored campaign, they "drain" a small percentage of the campaign's OG Point bank. This is how users accumulate their own personal OG points.
+
+    The more a user contributes, the more OG points they can accumulate. Once the OG Point bank is empty, the campaign loses its sponsored status.
+
+3.  **Monthly Fee Distribution**
+    A total of 30% of all fees collected by the Space Bums platform is distributed back to the community every month.
+
+    This distribution is proportional to each user's accumulated OG points. The more points you have, the larger your share of the monthly revenue. This creates a powerful incentive for users to seek out and participate in sponsored campaigns.
 
 
-## Documentation
+  ##  🛠️ Development
+# Smart Contract Development
+### Smart Contract Development
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
+*   **Run tests**
+    ```bash
+    yarn foundry:test
+    ```
+*   **Deploy to local network**
+    ```bash
+    yarn deploy
+    ```
+*   **Deploy to testnet/mainnet**
+    ```bash
+    yarn deploy --network <network-name>
+    ```
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+### Frontend Development
 
-## Contributing to Scaffold-ETH 2
+*   **Start development server**
+    ```bash
+    yarn dev
+    ```
+*   **Build for production**
+    ```bash
+    yarn build
+    ```
+*   **Deploy to Vercel**
+    ```bash
+    yarn vercel
+    ```
 
-We welcome contributions to Scaffold-ETH 2!
+### Contract Interaction
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+*   Use the Debug Contracts page for testing.
+*   Interact with contracts using the provided hooks.
+*   Monitor events and transactions in real-time.
+
+### 🔐 Smart Contract Addresses
+Important: Please replace the placeholder addresses below with your actual deployed contract addresses on the target network.
+
+*   **Launchpad.sol:** `0xBb88E6126FdcD4ae6b9e3038a2255D66645AEA7a`
+*   **LaunchpadV2.sol:** `0x6330605C037437270aab6526263595c2297E4B5E`
+*   **Usdc.sol:** `0xf2A558c41e9A5505d2E5614a4AAb85f397816d00`
+*   **BumdexFactory.sol:** `0xA5f8f44614D6ADAcF924bc3143E0356d9A37A748`
+*   **BumdexRouter.sol:** `0x125933626e9AAadCDe4D776e2fC31d2e715Bc1d3`
+
+### 🌐 Supported Networks
+
+*   **Local Development:** Anvil/Hardhat local network
+*   **Testnets:** Sepolia, Goerli
+*   **Mainnet:** Ethereum mainnet
+
+### 🤝 Contributing
+We welcome contributions to Space Bums!
+
+1.  Fork the repository
+2.  Create a feature branch
+3.  Make your changes
+4.  Add tests for new functionality
+5.  Submit a pull request
+
+#### Development Guidelines
+
+*   Follow Solidity best practices and security patterns.
+*   Write comprehensive tests for all smart contract functions.
+*   Use TypeScript for frontend development.
+*   Follow the existing code style and patterns.
+
+### 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+### 🙏 Acknowledgments
+
+*   Built on Scaffold-ETH 2
+*   Inspired by Bancor and Uniswap protocols
+*   Community-driven development and feedback
+
+Space Bums - Revolutionizing token launches with instant liquidity and automated market making. ?
