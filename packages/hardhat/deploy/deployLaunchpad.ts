@@ -22,19 +22,41 @@ const deployLaunchpad: DeployFunction = async function (hre: HardhatRuntimeEnvir
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
+  // await deploy("Launchpad", {
+  //   from: deployer,
+  //   // Contract constructor arguments
+  //   args: [
+  //     "0x7FBbE68068A3Aa7E479A1E51e792F4C2073b018f",
+  //     "0xf2A558c41e9A5505d2E5614a4AAb85f397816d00",
+  //     "0x125933626e9AAadCDe4D776e2fC31d2e715Bc1d3",
+  //     "0xA5f8f44614D6ADAcF924bc3143E0356d9A37A748",
+  //     50 * 10 ** 6,
+  //   ],
+  //   log: true,
+  //   // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+  //   // automatically mining the contract deployment transaction. There is no effect on live networks.
+  //   autoMine: true,
+  // });
+
   await deploy("Launchpad", {
     from: deployer,
-    // Contract constructor arguments
-    args: [
-      "0x7FBbE68068A3Aa7E479A1E51e792F4C2073b018f",
-      "0xf2A558c41e9A5505d2E5614a4AAb85f397816d00",
-      "0x125933626e9AAadCDe4D776e2fC31d2e715Bc1d3",
-      "0xA5f8f44614D6ADAcF924bc3143E0356d9A37A748",
-      50 * 10 ** 6,
-    ],
+    proxy: {
+      owner: deployer,
+      proxyContract: "OpenZeppelinTransparentProxy",
+      execute: {
+        init: {
+          methodName: "initialize",
+          args: [
+            "0x7FBbE68068A3Aa7E479A1E51e792F4C2073b018f",
+            "0xf2A558c41e9A5505d2E5614a4AAb85f397816d00",
+            "0x125933626e9AAadCDe4D776e2fC31d2e715Bc1d3",
+            "0xA5f8f44614D6ADAcF924bc3143E0356d9A37A748",
+            50 * 10 ** 6,
+          ],
+        },
+      },
+    },
     log: true,
-    // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
-    // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
 
