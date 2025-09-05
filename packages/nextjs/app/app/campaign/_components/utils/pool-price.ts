@@ -393,6 +393,7 @@ export function usePoolPrice(uniswapPairAddress: string | undefined) {
       }
     },
     [
+      usdcAddress,
       publicClient,
       isValidPairAddress,
       token0,
