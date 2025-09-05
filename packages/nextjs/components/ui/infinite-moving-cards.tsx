@@ -23,24 +23,7 @@ export const InfiniteMovingCards = ({
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
   const [start, setStart] = useState(false);
-  const addAnimation = useCallback(() => {
-    if (containerRef.current && scrollerRef.current) {
-      const scrollerContent = Array.from(scrollerRef.current.children);
-      scrollerContent.forEach(item => {
-        const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
-      });
-      getDirection();
-      getSpeed();
-      setStart(true);
-    }
-  }, [containerRef, scrollerRef]);
 
-  useEffect(() => {
-    addAnimation();
-  }, [addAnimation]);
   const getDirection = () => {
     if (containerRef.current) {
       if (direction === "left") {
@@ -61,6 +44,26 @@ export const InfiniteMovingCards = ({
       }
     }
   };
+
+  const addAnimation = useCallback(() => {
+    if (containerRef.current && scrollerRef.current) {
+      const scrollerContent = Array.from(scrollerRef.current.children);
+      scrollerContent.forEach(item => {
+        const duplicatedItem = item.cloneNode(true);
+        if (scrollerRef.current) {
+          scrollerRef.current.appendChild(duplicatedItem);
+        }
+      });
+      getDirection();
+      getSpeed();
+      setStart(true);
+    }
+  }, [containerRef, scrollerRef, getDirection, getSpeed]);
+
+  useEffect(() => {
+    addAnimation();
+  }, [addAnimation]);
+
   return (
     <div
       ref={containerRef}
