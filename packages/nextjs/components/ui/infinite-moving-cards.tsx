@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { Address } from "../scaffold-eth";
 import { cn, formatAmount } from "~~/lib/utils";
@@ -22,27 +22,25 @@ export const InfiniteMovingCards = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    addAnimation();
-  }, [addAnimation]);
-
   const [start, setStart] = useState(false);
-  function addAnimation() {
+  const addAnimation = useCallback(() => {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
-
       scrollerContent.forEach(item => {
         const duplicatedItem = item.cloneNode(true);
         if (scrollerRef.current) {
           scrollerRef.current.appendChild(duplicatedItem);
         }
       });
-
       getDirection();
       getSpeed();
       setStart(true);
     }
-  }
+  }, [containerRef, scrollerRef]);
+
+  useEffect(() => {
+    addAnimation();
+  }, [addAnimation]);
   const getDirection = () => {
     if (containerRef.current) {
       if (direction === "left") {
