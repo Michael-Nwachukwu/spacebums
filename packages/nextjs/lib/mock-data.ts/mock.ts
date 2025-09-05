@@ -1,92 +1,38 @@
-// import { ICampaign } from "../../types/interface";
+import { ISpaceBumsFeature } from "~~/types/interface";
 
-// export const campaigns: ICampaign[] = [
-//   {
-//     id: 1,
-//     creator: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     targetAmount: 3000,
-//     amountRaised: 820,
-//     tokensSold: 500000,
-//     totalSupply: 10000000,
-//     tokensForSale: 5000000,
-//     creatorAllocation: 0,
-//     liquidityAllocation: 0,
-//     platformFeeTokens: 0,
-//     deadline: 0,
-//     token: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     isActive: true,
-//     isFundingComplete: false,
-//     isCancelled: false,
-//     name: "Steakhouse",
-//     symbol: "STKH",
-//     description: "The Steakhouse USDC vault aims to optimize yields by lending USDC against blue chip crypto and real world asset (RWA) collateral markets, depending on market conditions. We call this the 'dual engine.'",
-//     uniswapPair: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     ogPoints: 1000
-//   },
-//   {
-//     id: 2,
-//     creator: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     targetAmount: 10000,
-//     amountRaised: 2000,
-//     tokensSold: 500000,
-//     totalSupply: 10000000,
-//     tokensForSale: 5000000,
-//     creatorAllocation: 0,
-//     liquidityAllocation: 0,
-//     platformFeeTokens: 0,
-//     deadline: 0,
-//     token: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     isActive: false,
-//     isFundingComplete: false,
-//     isCancelled: true,
-//     name: "Smokehouse",
-//     symbol: "SMH",
-//     description: "The Smokehouse USDC vault aims to optimize for yield on a wide range of collaterals.",
-//     uniswapPair: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     ogPoints: 0
-//   },
-//   {
-//     id: 3,
-//     creator: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     targetAmount: 10000,
-//     amountRaised: 2000,
-//     tokensSold: 500000,
-//     totalSupply: 10000000,
-//     tokensForSale: 5000000,
-//     creatorAllocation: 0,
-//     liquidityAllocation: 0,
-//     platformFeeTokens: 0,
-//     deadline: 0,
-//     token: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     isActive: false,
-//     isFundingComplete: true,
-//     isCancelled: false,
-//     name: "Relend",
-//     symbol: "RLND",
-//     description: "The Relend USDC vault serves as a Global Liquidity Vault for Relend Network. Users who supply USDC earn additional relending yield. Collateral markets are selected for competitive yield and long term partner alignment.",
-//     uniswapPair: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     ogPoints: 346
-//   },
-//   {
-//     id: 4,
-//     creator: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     targetAmount: 10000,
-//     amountRaised: 2000,
-//     tokensSold: 500000,
-//     totalSupply: 10000000,
-//     tokensForSale: 5000000,
-//     creatorAllocation: 0,
-//     liquidityAllocation: 0,
-//     platformFeeTokens: 0,
-//     deadline: 0,
-//     token: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     isActive: true,
-//     isFundingComplete: false,
-//     isCancelled: false,
-//     name: "ROBHOB",
-//     symbol: "RHB",
-//     description: "The Relend USDC vault serves as a Global Liquidity Vault for Relend Network. Users who supply USDC earn additional relending yield. Collateral markets are selected for competitive yield and long term partner alignment.",
-//     uniswapPair: "0xc2c5AD1a018FFD61FdCf94e5bfc6af863AE5873e",
-//     ogPoints: 32
-//   },
-// ];
+export const spaceBumsFeatures: ISpaceBumsFeature[] = [
+  {
+    id: 1,
+    title: "Campaign Creation",
+    description:
+      "Creators can launch token campaigns with custom supply, funding targets, and metadata in just a few clicks.",
+  },
+  {
+    id: 2,
+    title: "Instant Liquidity",
+    description:
+      "Once a campaign succeeds, liquidity is deployed automatically to BumDex using raised USDC and allocated tokens.",
+  },
+  {
+    id: 3,
+    title: "USDC Fundraising",
+    description: "All campaigns raise funds in USDC for predictable pricing and stable treasury management.",
+  },
+  {
+    id: 4,
+    title: "Refund Protection",
+    description:
+      "If a campaign fails or is cancelled, users can claim a full refund of their USDC contribution at any time.",
+  },
+  {
+    id: 5,
+    title: "OG Points System",
+    description:
+      "Users earn OG Points by buying into sponsored campaigns, which qualify them for monthly revenue share from platform fees.",
+  },
+  {
+    id: 6,
+    title: "Real-Time Analytics",
+    description: "Campaign dashboards display live stats on funds raised, token pricing, pool reserves, and volume.",
+  },
+];

@@ -31,3 +31,9 @@ export interface ITokenPurchaseEvents {
   tokensReceived: number;
   usdcAmount: number;
 }
+
+export interface ISpaceBumsFeature {
+  id: number;
+  title: string;
+  description: string;
+}

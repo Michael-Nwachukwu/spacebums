@@ -7,6 +7,7 @@ import TableRow from "../../_components/table-row";
 import { ArrowDown, BrushCleaning, Search } from "lucide-react";
 import { useReadContract } from "wagmi";
 import GlobalStats from "~~/components/GlobalStats";
+import { Button } from "~~/components/ui/button";
 import { Card } from "~~/components/ui/card";
 import { Input } from "~~/components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "~~/components/ui/select";
@@ -21,12 +22,6 @@ export function ExplorerContent() {
 
   const offset = 0;
   const limit = 10;
-
-  // const { data: allCampaigns } = useScaffoldReadContract({
-  //   contractName: "LaunchpadChild",
-  //   functionName: "getAllCampaignsPaginated",
-  //   args: [offset, limit],
-  // });
 
   const { data: allCampaigns } = useReadContract({
     address: externalContracts[50312].LaunchpadChild.address,
@@ -153,10 +148,10 @@ export function ExplorerContent() {
   // }, [campaigns, sortBy, searchQuery]);
 
   return (
-    <div className="p-1.5 space-y-8 bg-[#070907] m-4 rounded-2xl">
-      <div className="w-full p-4 grid grid-cols-2 items-center px-5">
-        <div className="flex flex-col items-start gap-2 pl-8">
-          <h1 className="text-6xl font-medium font-stretch-normal">
+    <div className="p-1.5 space-y-8 bg-[#070907] m-2 sm:m-4 rounded-2xl">
+      <div className="w-full p-4 grid sm:grid-cols-2 items-center sm:px-5">
+        <div className="flex flex-col items-start gap-2 sm:pl-8 order-2 sm:order-1">
+          <h1 className="text-3xl sm:text-6xl font-medium font-stretch-normal">
             Explore The Space, Discover the best of SpaceBums
           </h1>
           <p className="text-gray-400 text-sm">
@@ -172,20 +167,23 @@ export function ExplorerContent() {
           alt="Space"
           width={800}
           height={800}
-          className="rounded-3xl w-[90%] ml-auto"
+          className="rounded-3xl w-[90%] ml-auto order-1 sm:order-2"
           objectFit="contain"
         />
       </div>
 
-      <div className="space-y-6 bg-[#101720] p-6 rounded-2xl">
+      <div className="space-y-6 bg-[#101720] p-3 sm:p-6 rounded-2xl">
         {/* Filters and search */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
-              <span className="text-gray-400 text-sm">Sort:</span>
+              <span className="text-gray-400 text-sm hidden sm:block">Sort:</span>
+
               <Select value={sortBy} onValueChange={(value: SortOption) => setSortBy(value)}>
                 <SelectTrigger className="border-[#25333b] focus:border-gray-500">
-                  <SelectValue placeholder="Sort by" />
+                  <div className="hidden sm:block">
+                    <SelectValue placeholder="Sort by" />
+                  </div>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
@@ -196,17 +194,18 @@ export function ExplorerContent() {
                   </SelectGroup>
                 </SelectContent>
               </Select>
+              <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b]">
+                <Search className="h-4 w-4" />
+              </Button>
             </div>
           </div>
 
           <div className="flex items-center space-x-2">
             <CreateCampaignDrawer />
-            <div className="relative w-64">
+            <div className="relative w-64 hidden sm:block">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
-                placeholder="Search by name or creator..."
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
+                placeholder="Filter vaults"
                 className="pl-10 bg-transparent border-[#25333b] rounded-lg h-10 text-white placeholder-gray-400 focus:border-gray-500"
               />
             </div>
@@ -228,7 +227,7 @@ export function ExplorerContent() {
               <div>Indulge</div>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-3 overflow-x-scroll">
               {!campaigns
                 ? Array.from({ length: 4 }).map((_, i) => (
                     <Skeleton className="h-20 bg-[#070907]/50 w-full rounded-2xl" key={i} />

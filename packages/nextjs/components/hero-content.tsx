@@ -5,12 +5,12 @@ import GlobalStatsCard from "./global-stats-card";
 
 export default function HeroContent() {
   return (
-    <main className=" flex flex-col flex-1 justify-between">
-      <div className="flex w-full justify-end pt-7 pr-8 z-20 textwhite">
+    <main className="flex flex-col flex-1 justify-between">
+      <div className="sm:flex w-full justify-end pt-7 pr-8 z-20 hidden">
         <GlobalStatsCard />
       </div>
-      <div className="absolute bottom-12 left-8 z-20 max-w-xl">
-        <div className="text-left">
+      <div className="absolute bottom-12 left-4 sm:left-8 z-20 max-w-lg sm:max-w-xl">
+        <div className="text-left pr-3">
           <div
             className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 backdrop-blur-sm mb-4 relative"
             style={{
@@ -22,7 +22,7 @@ export default function HeroContent() {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-6xl md:leading-16 tracking-tight font-light text-white mb-4">
+          <h1 className="text-4xl md:text-6xl md:leading-16 tracking-tight font-light text-white mb-4">
             The galaxy’s <span className="font-medium italic instrument">fairest</span> launchpad for token pioneers. 🚀
           </h1>
 

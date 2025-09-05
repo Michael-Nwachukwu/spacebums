@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import CreateCampaignDrawer from "./create-campaign-drawer";
 import TableRow from "./table-row";
-import { ArrowDown, BrushCleaning, ExpandIcon, Gift, Search } from "lucide-react";
+import { ArrowDown, BrushCleaning, ExpandIcon, Gift, Search, SortAsc } from "lucide-react";
 import { useAccount } from "wagmi";
 import { Badge } from "~~/components/ui/badge";
 import { Button } from "~~/components/ui/button";
@@ -118,9 +118,9 @@ export function DashboardContent() {
   });
 
   return (
-    <div className="p-1.5 space-y-8 bg-[#070907] m-4 rounded-2xl">
+    <div className="p-1.5 space-y-8 bg-[#070907] m-2 sm:m-4 rounded-2xl">
       {/* Top section with deposits and APY */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-16 p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-8 sm:py-16 p-6">
         {/* Your deposits */}
         <div className="lg:col-span-1">
           <Card className="bg-[#19242a] border-[#3e545f] p-6">
@@ -171,23 +171,23 @@ export function DashboardContent() {
       </div>
 
       {/* Bottom section with tabs and table */}
-      <div className="space-y-6 bg-[#101720] p-6 rounded-2xl">
+      <div className="space-y-6 bg-[#101720] px-3 py-4 sm:p-6 rounded-2xl">
         {/* Tabs */}
         <Tabs defaultValue="participated-campaign" className="space-y-6">
-          <TabsList className="bg-transparent space-x-8">
+          <TabsList className="bg-transparent space-x-4 sm:space-x-8">
             <TabsTrigger
-              className="bg-transparent text-2xl data-[state=active]:bg-transparent data-[state=active]:text-white ata-[state=active]:font-semibold px-0 text-white/40 flex items-center gap-3"
+              className="bg-transparent text-sm sm:text-2xl data-[state=active]:bg-transparent data-[state=active]:text-white ata-[state=active]:font-semibold px-0 text-white/40 flex items-center gap-1.5 sm:gap-3"
               value="created-campaigns"
             >
               Your campaigns
-              <Badge className="text-[#8daa98] bg-[#25333b] mt-2">40</Badge>
+              <Badge className="text-[#8daa98] bg-[#25333b]">{campaignsByCreator.length}</Badge>
             </TabsTrigger>
             <TabsTrigger
-              className="bg-transparent text-2xl data-[state=active]:bg-transparent data-[state=active]:text-white ata-[state=active]:font-semibold px-0 text-white/40 flex items-center gap-3"
+              className="bg-transparent text-sm sm:text-2xl data-[state=active]:bg-transparent data-[state=active]:text-white ata-[state=active]:font-semibold px-0 text-white/40 flex items-center gap-1.5 sm:gap-3"
               value="participated-campaign"
             >
               Campaigns
-              <Badge className="text-[#8daa98] bg-[#25333b] mt-2">23</Badge>
+              <Badge className="text-[#8daa98] bg-[#25333b]">{usersParticipatedCampaigns.length}</Badge>
             </TabsTrigger>
           </TabsList>
 
@@ -197,10 +197,14 @@ export function DashboardContent() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-6">
                 <div className="flex items-center space-x-2">
-                  <span className="text-gray-400 text-sm">Sort:</span>
+                  <span className="text-gray-400 text-sm hidden sm:block">Sort:</span>
+
                   <Select>
-                    <SelectTrigger className="border-[#25333b] focus:border-gray-500">
-                      <SelectValue placeholder="Sort by" />
+                    <SelectTrigger className="sm:border-[#171e23] border border-[#25333b] focus:border-gray-500">
+                      <div className="hidden sm:block">
+                        <SelectValue placeholder="Sort by" />
+                      </div>
+                      <SortAsc className="sm:hidden" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
@@ -210,12 +214,15 @@ export function DashboardContent() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
+                  <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b]">
+                    <Search className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
 
               <div className="flex items-center space-x-2">
                 <CreateCampaignDrawer />
-                <div className="relative w-64">
+                <div className="relative w-64 hidden sm:block">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
                     placeholder="Filter vaults"
@@ -269,15 +276,18 @@ export function DashboardContent() {
           </TabsContent>
 
           <TabsContent value="participated-campaign" className="space-y-6">
-            <p className="text-gray-500">Campaigns you participate in will appear here</p>
+            <p className="text-gray-500 text-sm sm:text-base">Campaigns you participate in will appear here</p>
             {/* Filters and search */}
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-6">
                 <div className="flex items-center space-x-2">
-                  <span className="text-gray-400 text-sm">Sort:</span>
+                  <span className="text-gray-400 text-sm hidden sm:block">Sort:</span>
                   <Select>
-                    <SelectTrigger className="border-[#25333b] focus:border-gray-500">
-                      <SelectValue placeholder="Sort by" />
+                    <SelectTrigger className="sm:border-[#171e23] border border-[#25333b] focus:border-gray-500">
+                      <div className="hidden sm:block">
+                        <SelectValue placeholder="Sort by" />
+                      </div>
+                      <SortAsc className="sm:hidden" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
@@ -287,12 +297,15 @@ export function DashboardContent() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
+                  <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b]">
+                    <Search className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center sm:space-x-2">
                 <CreateCampaignDrawer />
-                <div className="relative w-64">
+                <div className="relative w-64 hidden sm:block">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
                     placeholder="Filter vaults"
