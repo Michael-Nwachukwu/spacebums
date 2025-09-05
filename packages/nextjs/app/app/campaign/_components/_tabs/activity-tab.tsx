@@ -66,7 +66,7 @@ export function ActivityTab({ campaign }: { campaign: ICampaign | undefined }) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
-                <div>Amount (USD)</div>
+                <div>Amount</div>
                 <div>To</div>
                 <div>Transaction</div>
               </div>
@@ -108,6 +108,59 @@ export function ActivityTab({ campaign }: { campaign: ICampaign | undefined }) {
                   </a>
                 </div>
               ))}
+
+              {swapEvents.length > 0 ? (
+                swapEvents.slice(0, 50).map((event, index) => (
+                  <div key={`${event.transactionHash}-${index}`} className="grid grid-cols-5 gap-2 p-4 text-xs">
+                    <div className="py-3">
+                      <span
+                        className={`px-2 py-1 rounded-2xl text-xs font-medium ${
+                          event.type === "buy" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {event.type.toUpperCase()}
+                      </span>
+                    </div>
+                    <div className="text-gray-300 pt-2">{formatTimeAgo(event.timestamp)}</div>
+                    <span className="text-white pt-2">
+                      ${formatNumber(Math.max(event.amountInUSD, event.amountOutUSD))}
+                    </span>
+                    <a
+                      href={`https://sepolia.etherscan.io/address/${event.sender}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div className="flex items-center gap-2 hover:bg-[#546054b0] w-3/4 py-1 px-2 rounded-2xl">
+                        <Address size="xs" address={event.sender} />
+                        <ExternalLink className="w-4 h-4 mb-1" />
+                      </div>
+                    </a>
+
+                    <a
+                      href={`https://sepolia.etherscan.io/tx/${event.transactionHash}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-gray-400 pt-2"
+                    >
+                      {formatAddress(event.transactionHash)}
+                    </a>
+                  </div>
+                ))
+              ) : (
+                <Card className="bg-[#19242a] border-[#3e545f] h-64">
+                  <div className="flex items-center justify-center w-full h-full">
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="h-16 w-16 rounded-full flex justify-center items-center bg-[#546054b0] text-[#8daa98]">
+                        <BrushCleaning size={27} />
+                      </div>
+
+                      <div className="flex flex-col items-start gap-2">
+                        <div className="font-medium text-lg text-[#8daa98]">No activities found</div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              )}
             </div>
           </>
         ) : (

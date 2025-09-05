@@ -90,7 +90,7 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
         {!campaign ? (
           <Skeleton className="h-16 w-96 bg-[#11181C] rounded-2xl" />
         ) : (
-          <h1 className="text-6xl font-light">
+          <h1 className="text-4xl sm:text-6xl font-light">
             {campaign?.name} <span className="text-gray-400">USDC</span>
           </h1>
         )}
@@ -103,39 +103,40 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
         >
           <Copy className="w-5 h-5" />
         </Button>
-
-        {!campaign ? (
-          <Skeleton className="h-10 w-20 bg-[#11181C] rounded-3xl" />
-        ) : campaign.isPromoted ? (
-          <div className="hover:text-white rounded-3xl bg-green-950 text-green-200 hover:bg-green-900 inline-flex items-center gap-2 px-3 py-1 cursor-pointer">
-            Promoted ⚡️
-          </div>
-        ) : (
-          campaign.creator === address && (
-            <div
-              className="hover:text-white rounded-3xl bg-green-950 text-green-200 hover:bg-green-900 inline-flex items-center gap-2 px-3 py-1 cursor-pointer"
-              onClick={approveTokensAndPromote}
-            >
-              Sponsor
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Info className="w-4 h-4 animate-pulse-fast" />
-                </TooltipTrigger>
-                <TooltipContent side="bottom" className="max-w-sm text-sm font-extralight text-gray-400">
-                  <div className="flex items-center gap-4 -mt-2">
-                    <p className="text-gray-400 text-sm font-semibold pt2">Sponsor</p>
-                    <span className="font-semibold">$10</span>
-                  </div>
-                  <p className="-mt-2">
-                    Sponsorship increases visibility for campaigns by promoting them to a wider audience, attracting
-                    potential backers and enhancing credibility. This heightened exposure can lead to increased funding
-                    opportunities and greater engagement from the community.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
+        <div className="hidden sm:block">
+          {!campaign ? (
+            <Skeleton className="h-10 w-20 bg-[#11181C] rounded-3xl" />
+          ) : campaign.isPromoted ? (
+            <div className="hover:text-white rounded-3xl bg-green-950 text-green-200 hover:bg-green-900 inline-flex items-center gap-2 px-3 py-1 cursor-pointer">
+              Promoted ⚡️
             </div>
-          )
-        )}
+          ) : (
+            campaign.creator === address && (
+              <div
+                className="hover:text-white rounded-3xl bg-green-950 text-green-200 hover:bg-green-900 inline-flex items-center gap-2 px-3 py-1 cursor-pointer"
+                onClick={approveTokensAndPromote}
+              >
+                Sponsor
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info className="w-4 h-4 animate-pulse-fast" />
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="max-w-sm text-sm font-extralight text-gray-400">
+                    <div className="flex items-center gap-4 -mt-2">
+                      <p className="text-gray-400 text-sm font-semibold pt2">Sponsor</p>
+                      <span className="font-semibold">$10</span>
+                    </div>
+                    <p className="-mt-2">
+                      Sponsorship increases visibility for campaigns by promoting them to a wider audience, attracting
+                      potential backers and enhancing credibility. This heightened exposure can lead to increased
+                      funding opportunities and greater engagement from the community.
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+            )
+          )}
+        </div>
       </div>
 
       {/* Badges */}
@@ -146,28 +147,65 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
         </div>
       ) : (
         <div className="flex items-center gap-3 mb-6">
-          <Badge variant="secondary" className="bg-green-900/30 text-green-400 border-green-700">
+          <Badge
+            variant="secondary"
+            className="bg-green-900/30 text-green-400 border-green-700 py-1 text-xs sm:text-sm"
+          >
             <div className="w-2 h-2 bg-green-400 rounded-full mr-2" />
             {campaign?.symbol}
           </Badge>
-          <Badge variant="secondary" className="bg-blue-900/30 text-blue-400 border-blue-700">
+          <Badge variant="secondary" className="bg-blue-900/30 text-blue-400 border-blue-700 text-xs sm:text-sm">
             <Image src="/usdc.svg" alt="USDC" width={16} height={16} className="w-5 h-5 mr-2" />
             USDC
           </Badge>
+          <div className="hidden sm:block">
+            {!campaign ? (
+              <Skeleton className="h-7 sm:h-10 w-14 sm:w-20 bg-[#11181C] rounded-3xl" />
+            ) : campaign.isPromoted ? (
+              <div className="hover:text-white rounded-3xl bg-green-950 text-green-200 hover:bg-green-900 inline-flex items-center sm:gap-2 px-2 sm:px-3 py-1 cursor-pointer text-xs sm:text-base">
+                Promoted ⚡️
+              </div>
+            ) : (
+              campaign.creator === address && (
+                <div
+                  className="hover:text-white rounded-3xl bg-green-950 text-green-200 hover:bg-green-900 inline-flex items-center gap-2 px-2 sm:px-3 py-1 cursor-pointer text-xs sm:text-base"
+                  onClick={approveTokensAndPromote}
+                >
+                  Sponsor
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Info className="w-3 sm:w-4 h-3 sm:h-4 animate-pulse-fast" />
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="max-w-sm text-xs sm:text-sm font-extralight text-gray-400">
+                      <div className="flex items-center gap-4 -mt-2">
+                        <p className="text-gray-400 text-sm font-semibold pt2">Sponsor</p>
+                        <span className="font-semibold">$10</span>
+                      </div>
+                      <p className="-mt-2">
+                        Sponsorship increases visibility for campaigns by promoting them to a wider audience, attracting
+                        potential backers and enhancing credibility. This heightened exposure can lead to increased
+                        funding opportunities and greater engagement from the community.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              )
+            )}
+          </div>
         </div>
       )}
 
       {/* Description */}
       {!campaign ? (
-        <Skeleton className="h-4 w-[300p] rounded bg-[#11181C] mb-6" />
+        <Skeleton className="h-4 rounded bg-[#11181C] mb-6" />
       ) : (
-        <p className="text-gray-300 mb-8 max-w-4xl font-light">{campaign?.description}</p>
+        <p className="text-gray-300 mb-8 w-full text-wrap sm:max-w-4xl font-light">{campaign?.description}</p>
       )}
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-4 gap-8 mb-8">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
+      <div className="grid grid-cols-4 gap-1 sm:gap-8 mb-8 items-center">
+        <div className="flex flex-col gap-2 items-start">
+          <div>
             <span className="text-gray-400/90 text-xs">{live ? "24h Volume" : "Target Amount"}</span>
           </div>
 
@@ -176,22 +214,26 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
           ) : live ? (
             !iscalculating ? (
               <>
-                <div className="text-3xl font-light">${formatNumber(poolMetrics.volume24h)}</div>
-                <div className="text-gray-400/90 text-xs mt-1">${formatNumber(poolMetrics.volume24h)} USDC</div>
+                <div className="text-xl sm:text-3xl font-light">${formatNumber(poolMetrics.volume24h)}</div>
+                <div className="text-gray-400/90 text-xs mt-1 hidden sm:block">
+                  ${formatNumber(poolMetrics.volume24h)} USDC
+                </div>
               </>
             ) : (
               <Skeleton className="h-20 w-20 rounded-2xl bg-[#11181C] mb-6" />
             )
           ) : (
             <>
-              <div className="text-3xl font-light">${formatAmount(campaign?.targetAmount || 0)}</div>
-              <div className="text-gray-400/90 text-xs mt-1">{formatAmount(campaign?.targetAmount || 0)} USDC</div>
+              <div className="text-xl sm:text-3xl font-light">${formatAmount(campaign?.targetAmount || 0)}</div>
+              <div className="text-gray-400/90 text-xs mt-1 hidden sm:block">
+                {formatAmount(campaign?.targetAmount || 0)} USDC
+              </div>
             </>
           )}
         </div>
 
-        <div>
-          <div className="flex items-center gap-2 mb-2">
+        <div className="flex flex-col gap-2 items-start">
+          <div>
             <span className="text-gray-400/90 text-xs">{live ? "TVL" : "Amount Raised"}</span>
           </div>
           {!campaign ? (
@@ -199,25 +241,38 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
           ) : live ? (
             !iscalculating ? (
               <>
-                <div className="text-3xl font-light">${formatNumber(poolMetrics.tvl)}</div>
-                <div className="text-gray-400/90 text-xs mt-1">${formatNumber(poolMetrics.tvl)} USDC</div>
+                <div className="text-xl sm:text-3xl font-light">
+                  ${formatAmount(Number(poolMetrics.tvl.toFixed(2)))}
+                </div>
+                <div className="text-gray-400/90 text-xs mt-1 hidden sm:block">
+                  ${formatNumber(poolMetrics.tvl)} USDC
+                </div>
               </>
             ) : (
               <Skeleton className="h-20 w-20 rounded-2xl bg-[#11181C] mb-6" />
             )
           ) : (
             <>
-              <div className="text-3xl font-light">${formatAmount(campaign?.amountRaised || 0)}</div>
-              <div className="text-gray-400/90 text-xs mt-1">{formatAmount(campaign?.amountRaised || 0)} USDC</div>
+              <div className="text-xl sm:text-3xl font-light">${formatAmount(campaign?.amountRaised || 0)}</div>
+              <div className="text-gray-400/90 text-xs mt-1 hidden sm:block">
+                {formatAmount(campaign?.amountRaised || 0)} USDC
+              </div>
             </>
           )}
         </div>
 
-        <div>
-          <div className="mb-2">
-            <span className="text-gray-400/90 text-xs">{live ? "Total LP Supply" : "Deadline"}</span>
+        <div className="flex flex-col gap-2 items-start">
+          <div>
+            <span className="text-gray-400/90 text-xs">{live ? "LP Supply" : "Deadline"}</span>
           </div>
-          {live && <div className="flex items-center gap-2">{formatNumber(Number(totalSupply) / 10 ** 18, 6)}</div>}
+          {live && (
+            <>
+              <div className="flex items-center gap-2 text-xl sm:text-3xl">{formatAmount(Number(totalSupply))}</div>
+              <div className="text-gray-400/90 text-xs mt-1 hidden sm:block">
+                {formatAmount(Number(totalSupply))} LP tokens
+              </div>
+            </>
+          )}
           {!live && (
             <div className="flex items-center gap-2">
               {(() => {
@@ -265,8 +320,8 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
           )}
         </div>
 
-        <div>
-          <div className="flex items-center gap-2 mb-2">
+        <div className="flex flex-col gap-2 items-start ml-auto">
+          <div>
             <span className="text-gray-400 text-xs">{live ? "Liquidity" : "OG Point Bank"}</span>
             {!live && <Info className="w-4 h-4 text-gray-400" />}
           </div>
@@ -275,14 +330,12 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
           ) : live ? (
             !iscalculating ? (
               <>
-                <div className="flex items-center gap-2">
-                  <span className="text-3xl font-light">${formatNumber(poolMetrics.liquidity)}</span>
-                  {!live && (
-                    <div className="flex items-center text-blue-400">
-                      <span className="text-lg">✦</span>
-                    </div>
-                  )}
-                </div>
+                <>
+                  <span className="text-xl sm:text-3xl font-light">${formatNumber(poolMetrics.liquidity)}</span>
+                  <div className="text-gray-400/90 text-xs mt-1 hidden sm:block">
+                    ${formatNumber(poolMetrics.tvl)} USDC
+                  </div>
+                </>
               </>
             ) : (
               <Skeleton className="h-20 w-20 rounded-2xl bg-[#11181C] mb-6" />
@@ -290,7 +343,7 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
           ) : (
             <>
               <div className="flex items-center gap-2">
-                <span className="text-3xl font-light">{campaign?.promotionalOgPoints}</span>
+                <span className="text-xl sm:text-3xl font-light">{campaign?.promotionalOgPoints}</span>
                 <div className="flex items-center text-blue-400">
                   <span className="text-lg">✦</span>
                 </div>

@@ -7,6 +7,7 @@ import TableRow from "../../_components/table-row";
 import { ArrowDown, BrushCleaning, Search } from "lucide-react";
 import { useReadContract } from "wagmi";
 import GlobalStats from "~~/components/GlobalStats";
+import { AdvertisedCampaigns } from "~~/components/sliding-campaigns";
 import { Button } from "~~/components/ui/button";
 import { Card } from "~~/components/ui/card";
 import { Input } from "~~/components/ui/input";
@@ -152,12 +153,13 @@ export function ExplorerContent() {
       <div className="w-full p-4 grid sm:grid-cols-2 items-center sm:px-5">
         <div className="flex flex-col items-start gap-2 sm:pl-8 order-2 sm:order-1">
           <h1 className="text-3xl sm:text-6xl font-medium font-stretch-normal">
-            Explore The Space, Discover the best of SpaceBums
+            Ahoy!, Space Cadets. Find the Next Rocket Before It Blasts Off
           </h1>
           <p className="text-gray-400 text-sm">
-            Check out the latest campaigns, Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+            Welcome to the launch zone. Explore live, upcoming, and completed campaigns from creators building in the
+            open. Buy in early to earn more tokens.
           </p>
-          <div className="text-[#546054b0] text-xs">Create a campaign to start</div>
+          <div className="text-[#546054b0] text-xs">Create a campaign</div>
           <CreateCampaignDrawer />
           <GlobalStats />
         </div>
@@ -171,6 +173,8 @@ export function ExplorerContent() {
           objectFit="contain"
         />
       </div>
+
+      <AdvertisedCampaigns />
 
       <div className="space-y-6 bg-[#101720] p-3 sm:p-6 rounded-2xl">
         {/* Filters and search */}

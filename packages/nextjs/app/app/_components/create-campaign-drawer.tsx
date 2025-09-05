@@ -136,8 +136,8 @@ const CreateCampaignDrawer = () => {
             New campaign
           </Button>
         </DrawerTrigger>
-        <DrawerContent className="w-[100px] bg-[#19242a]">
-          <div className="mx-auto w-full min-w-sm">
+        <DrawerContent className="bg-[#19242a] overflow-y-scroll">
+          <div className="mx-auto w-full sm:min-w-sm overflow-y-scroll">
             <DrawerHeader>
               <DrawerTitle className="text-white">Create New Campaign</DrawerTitle>
               <DrawerDescription className="text-gray-400">
@@ -146,7 +146,7 @@ const CreateCampaignDrawer = () => {
             </DrawerHeader>
 
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="px-4 pb-4 space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="px-2 sm:px-4 pb-4 space-y-6">
                 {/* Basic Information */}
                 <div className="space-y-4">
                   <FormField

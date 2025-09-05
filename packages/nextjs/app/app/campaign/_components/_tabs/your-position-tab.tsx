@@ -44,7 +44,7 @@ export function YourPositionTab({ userPosition, campaign }: { userPosition: numb
       {/* My Deposit Section */}
       <div>
         {/* Empty Chart */}
-        <Card className="bg-[#11181C] border-[#24353d] p-6 h-80">
+        <Card className="bg-[#11181C] border-[#24353d] px-3 py-5 sm:p-6 h-80">
           <div className="flex justify-between items-center">
             {campaign?.isFundingComplete ? (
               <div className="flex flex-col items-start text-[#8daa98]">

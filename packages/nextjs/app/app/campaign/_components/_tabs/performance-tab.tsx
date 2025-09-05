@@ -12,8 +12,8 @@ export function PerformanceTab({ address, campaign }: { address: string; campaig
   return (
     <div className="space-y-8">
       <div className="space-y-2.5">
-        <div className="grid grid-cols-3 gap-2.5">
-          <div className="bg-[#11181C] border-[#24353d] border rounded-lg p-6 col-span-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+          <div className="bg-[#11181C] border-[#24353d] border rounded-lg p-6 sm:col-span-3">
             <h3 className="text-gray-400 text-sm mb-2">Amount Raised</h3>
             <div className="flex items-center gap-2">
               <span className="text-3xl font-light">${formatAmount(campaign?.amountRaised || 0)}</span>
@@ -45,10 +45,10 @@ export function PerformanceTab({ address, campaign }: { address: string; campaig
             <div className="text-2xl font-light">{formatAmount(campaign?.platformFeeTokens || 0)}</div>
           </div>
 
-          <div className="bg-[#11181C] border-[#24353d] border rounded-lg p-6 col-span-2/4">
+          <div className="bg-[#11181C] border-[#24353d] border rounded-lg py-6 pl-4 sm:p-6 col-span-2/4">
             <div className="text-gray-400 text-sm mb-2">Owner</div>
             <div className="flex items-center gap-2">
-              <Address address={campaign?.creator} />
+              <Address size="xs" address={campaign?.creator} />
               <button className="text-gray-400 hover:text-white">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path

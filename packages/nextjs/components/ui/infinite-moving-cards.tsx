@@ -97,7 +97,7 @@ export const InfiniteMovingCards = ({
                   <div className="inline-flex items-center text-xs gap-2 mb-2">
                     BY <Address size="xs" address={item.creator} />
                   </div>
-                  <span className="relative z-20 text-sm leading-[1.6] font-normal text-neutral-100 dark:text-gray-100 text-wrap line-clamp-2">
+                  <span className="relative z-20 text-sm leading-[1.6] font-normal text-neutral-100 dark:text-gray-100 text-wrap line-clamp-2 mb-4">
                     {item.description}
                   </span>
                   <div className="flex justify-between items-center w-full">
@@ -116,7 +116,7 @@ export const InfiniteMovingCards = ({
                       </div>
                     </div>
                     <Link
-                      href={"/app"}
+                      href={`/app/campaign/${item.id}`}
                       className="px-6 py-2 rounded-full bg-white text-black font-normal text-xs transition-all duration-300 hover:bg-white/90 cursor-pointer h-8 flex items-center z-10"
                     >
                       Visit

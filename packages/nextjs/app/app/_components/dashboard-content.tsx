@@ -120,7 +120,7 @@ export function DashboardContent() {
   return (
     <div className="p-1.5 space-y-8 bg-[#070907] m-2 sm:m-4 rounded-2xl">
       {/* Top section with deposits and APY */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-8 sm:py-16 p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-5 px-3 sm:py-16 sm:p-6">
         {/* Your deposits */}
         <div className="lg:col-span-1">
           <Card className="bg-[#19242a] border-[#3e545f] p-6">

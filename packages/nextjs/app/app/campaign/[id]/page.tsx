@@ -50,9 +50,9 @@ export default function VaultPage() {
   }, [data]);
 
   return (
-    <div className="p-1.5 space-y-8 bg-[#070907] m-4 rounded-2xl h-full">
-      <div className="flex">
-        <div className="flex-1 p-6 h-full">
+    <div className="p-1.5 space-y-8 bg-[#070907] m-2 sm:m-4 rounded-2xl h-full">
+      <div className="sm:flex">
+        <div className="flex-1 p-3 sm:p-6 h-full">
           <VaultHeader address={connectedAddress} campaign={_campaign} />
           <VaultTabs campaign={_campaign} />
         </div>
