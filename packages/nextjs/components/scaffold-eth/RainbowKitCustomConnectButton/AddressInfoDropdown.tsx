@@ -53,12 +53,12 @@ export const AddressInfoDropdown = ({
   return (
     <>
       <details ref={dropdownRef} className="dropdown dropdown-end leading-3">
-        <summary className="btn bg-[#070907] p-3 rounded-3xl btn-sm shadow-md dropdown-toggle gap-0 h-auto!">
+        <summary className="btn bg-[#070907] px-1.5 py-1.5 sm:p-3 rounded-3xl btn-xs sm:btn-sm shadow-md dropdown-toggle gap-0 h-auto!">
           <BlockieAvatar address={checkSumAddress} size={25} ensImage={ensAvatar} />
           <span className="ml-2 mr-1">
             {isENS(displayName) ? displayName : checkSumAddress?.slice(0, 6) + "..." + checkSumAddress?.slice(-4)}
           </span>
-          <ChevronDownIcon className="h-6 w-4 ml-2 sm:ml-0" />
+          <ChevronDownIcon className="h-6 w-4 ml-q sm:ml-0" />
         </summary>
         <ul className="dropdown-content menu z-2 p-2 mt-2 bg-base-200 rounded-box gap-1">
           <NetworkOptions hidden={!selectingNetwork} />

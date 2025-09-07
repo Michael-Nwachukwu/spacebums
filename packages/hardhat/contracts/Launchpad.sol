@@ -263,7 +263,7 @@ contract Launchpad is Initializable, ReentrancyGuardUpgradeable {
         Campaign storage c = campaigns[_campaignId];
 
         if (msg.sender != c.creator) revert Unauthorized();
-        if (!c.isActive || c.tokensSold > 0) revert InvalidInput();
+        // if (!c.isActive || c.tokensSold > 0) revert InvalidInput();
 
         c.isActive = false;
         c.isCancelled = true;

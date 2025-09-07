@@ -121,12 +121,15 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
                   <TooltipTrigger asChild>
                     <Info className="w-4 h-4 animate-pulse-fast" />
                   </TooltipTrigger>
-                  <TooltipContent side="bottom" className="max-w-sm text-sm font-extralight text-gray-400">
-                    <div className="flex items-center gap-4 -mt-2">
-                      <p className="text-gray-400 text-sm font-semibold pt2">Sponsor</p>
-                      <span className="font-semibold">$10</span>
+                  <TooltipContent
+                    side="bottom"
+                    className="max-w-sm text-sm font-extralight text-gray-300 bg-[#11181C] px-3 pt-5 space-y-5"
+                  >
+                    <div className="flex items-center gap-4">
+                      <p className="text-gray-400 text-base font-semibold pt2">Sponsor</p>
+                      <span className="font-semibold">$50</span>
                     </div>
-                    <p className="-mt-2">
+                    <p className="text-sm">
                       Sponsorship increases visibility for campaigns by promoting them to a wider audience, attracting
                       potential backers and enhancing credibility. This heightened exposure can lead to increased
                       funding opportunities and greater engagement from the community.
@@ -158,7 +161,7 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
             <Image src="/usdc.svg" alt="USDC" width={16} height={16} className="w-5 h-5 mr-2" />
             USDC
           </Badge>
-          <div className="hidden sm:block">
+          <div className="sm:hidden">
             {!campaign ? (
               <Skeleton className="h-7 sm:h-10 w-14 sm:w-20 bg-[#11181C] rounded-3xl" />
             ) : campaign.isPromoted ? (
@@ -320,10 +323,10 @@ export function VaultHeader({ campaign, address }: { campaign: ICampaign | undef
           )}
         </div>
 
-        <div className="flex flex-col gap-2 items-start ml-auto">
-          <div>
+        <div className="flex flex-col gap-2 items-start ml-auto sm:ml-0">
+          <div className="flex items-center gap-2">
             <span className="text-gray-400 text-xs">{live ? "Liquidity" : "OG Point Bank"}</span>
-            {!live && <Info className="w-4 h-4 text-gray-400" />}
+            {!live && <Info className="w-4 h-4 text-gray-400 hidden sm:block" />}
           </div>
           {!campaign ? (
             <Skeleton className="h-20 w-20 rounded-2xl bg-[#11181C] mb-6" />

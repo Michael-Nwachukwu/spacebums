@@ -3,12 +3,42 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Address } from "~~/components/scaffold-eth";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "~~/components/ui/alert-dialog";
 import { Button } from "~~/components/ui/button";
+import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 import { formatAmount } from "~~/lib/utils";
 import { ICampaign } from "~~/types/interface";
 
 export function PerformanceTab({ address, campaign }: { address: string; campaign: ICampaign | undefined }) {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const { writeContractAsync: writeCancleCampaignAsync } = useScaffoldWriteContract({ contractName: "LaunchpadFacet" });
+  const handleCancelCampaign = async () => {
+    try {
+      await writeCancleCampaignAsync(
+        {
+          functionName: "cancelCampaign",
+          args: [Number(campaign?.id)],
+        },
+        {
+          onBlockConfirmation: txnReceipt => {
+            console.log("📦 Transaction blockHash", txnReceipt.blockHash);
+          },
+        },
+      );
+    } catch (e) {
+      console.error("Error cancelling campaign", e);
+    }
+  };
   return (
     <div className="space-y-8">
       <div className="space-y-2.5">
@@ -86,9 +116,32 @@ export function PerformanceTab({ address, campaign }: { address: string; campaig
 
         {isDeleteOpen && (
           <div className="flex justify-center w-full mt-5">
-            <Button variant={"destructive"} className="w-full">
-              Cancel Campaign
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant={"destructive"} className="w-full">
+                  Cancel Campaign
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent className="bg-[#11181C] border-[#24353d] text-gray-300">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete your campaign and mark all available
+                    tokens for refund.
+                    <div className="mt-4 text-neutral-400">
+                      {formatAmount(campaign?.amountRaised || 0)} USDC of {formatAmount(campaign?.targetAmount || 0)}{" "}
+                      USDC Raised
+                    </div>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel className="text-black">Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleCancelCampaign} className="bg-red-600 text-red-100">
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         )}
       </div>

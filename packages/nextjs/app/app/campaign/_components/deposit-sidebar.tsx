@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import { BorrowInterface } from "./borrow-interface";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -150,6 +150,12 @@ export function DepositSidebar({ campaign }: { campaign: ICampaign | undefined }
     args: [connectedAddress || "", contractAddress],
   });
 
+  const { data: campaignStakingPool } = useScaffoldReadContract({
+    contractName: "CampaignTokenStaking",
+    functionName: "getStakingPoolInfo",
+    args: [campaign?.id],
+  });
+
   const formattedUsdcAmount = Number(usdcBalance ?? 0n) / 10 ** 6;
   const formattedTokenAmount = Number(purchaseReturn ?? 0n) / 10 ** 18;
 
@@ -157,12 +163,26 @@ export function DepositSidebar({ campaign }: { campaign: ICampaign | undefined }
     setAmount(formattedUsdcAmount);
   };
 
+  const stakingPool = useMemo(() => {
+    if (!campaignStakingPool) return undefined;
+    return {
+      stakingToken: campaignStakingPool[0],
+      totalStaked: Number(campaignStakingPool[1]),
+      rewardPool: Number(campaignStakingPool[2]),
+      apy: Number(campaignStakingPool[3]),
+      minStakingPeriod: Number(campaignStakingPool[4]),
+      enabled: campaignStakingPool[5],
+      emergencyMode: campaignStakingPool[6],
+      stakerCount: Number(campaignStakingPool[7]),
+    };
+  }, [campaignStakingPool]);
+
   if (!campaign) {
     return <Skeleton className="h-[700px] w-[400px] bg-[#11181C] rounded-2xl" />;
   }
 
   return campaign.isFundingComplete ? (
-    <BorrowInterface campaign={campaign} />
+    <BorrowInterface campaign={campaign} stakingPool={stakingPool} />
   ) : (
     <div className="w-full max-w-md space-y-4">
       {/* Main Deposit Card */}

@@ -4,18 +4,27 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePoolPrice } from "./utils/pool-price";
-import { ArrowUpDown } from "lucide-react";
+import { ArrowUpDown, ThumbsDown, ThumbsUp, X } from "lucide-react";
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import { Button } from "~~/components/ui/button";
+import { Card } from "~~/components/ui/card";
 import externalContracts from "~~/contracts/externalContracts";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
-import { ICampaign } from "~~/types/interface";
+import { formatAmount } from "~~/lib/utils";
+import { ICampaign, IStakingPool } from "~~/types/interface";
 
-export function BorrowInterface({ campaign }: { campaign: ICampaign }) {
+export function BorrowInterface({
+  campaign,
+  stakingPool,
+}: {
+  campaign: ICampaign;
+  stakingPool: IStakingPool | undefined;
+}) {
   const { address: connectedAddress, isConnected } = useAccount();
-  const [activeTab, setActiveTab] = useState<"trade" | "liquidity">("trade");
+  const [activeTab, setActiveTab] = useState<"trade" | "liquidity" | "stake">("trade");
   const [collateralAmount, setCollateralAmount] = useState("");
   const [borrowAmount, setBorrowAmount] = useState("");
+  const [stakeAmount, setStakeAmount] = useState<number>(0);
 
   const [swapFromAmount, setSwapFromAmount] = useState("");
   const [swapToAmount, setSwapToAmount] = useState("");
@@ -373,6 +382,17 @@ export function BorrowInterface({ campaign }: { campaign: ICampaign }) {
     }
   };
 
+  const handleStakeMaxClick = () => {
+    setStakeAmount(formattedTokenAmount);
+  };
+
+  const handleStakeAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value === "" || /^\d*\.?\d*$/.test(value)) {
+      setStakeAmount(Number(value));
+    }
+  };
+
   return (
     <div className="w-full max-w-md mx-auto space-y-4">
       {/* Tabs */}
@@ -393,11 +413,19 @@ export function BorrowInterface({ campaign }: { campaign: ICampaign }) {
         >
           Liquidity
         </button>
+        <button
+          onClick={() => setActiveTab("stake")}
+          className={`px-4 py-1 rounded-3xl text-sm font-medium transition-colors ${
+            activeTab === "stake" ? "bg-[#546054b0] text-gray-300" : "text-gray-500 hover:text-gray-300"
+          }`}
+        >
+          Stake
+        </button>
       </div>
 
       {activeTab === "liquidity" ? (
         <>
-          {/* Supply Collateral Section */}
+          {/* Supply token Section */}
           <div className="bg-[#11181C] rounded-3xl px-6 py-4 shadow-lg">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-gray-300 text-lg">Supply {campaign.name}</h3>
@@ -432,7 +460,7 @@ export function BorrowInterface({ campaign }: { campaign: ICampaign }) {
             </div>
           </div>
 
-          {/* Borrow USDC Section */}
+          {/* supply USDC Section */}
           <div className="bg-[#11181C] rounded-3xl px-6 py-4 shadow-lg">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-gray-300 text-lg">Supply USDC</h3>
@@ -527,7 +555,7 @@ export function BorrowInterface({ campaign }: { campaign: ICampaign }) {
             {!isConnected ? "Connect Wallet" : "Add Liquidity"}
           </Button>
         </>
-      ) : (
+      ) : activeTab === "trade" ? (
         <>
           {/* Swap From Section */}
           <div className="bg-[#11181C] rounded-3xl px-6 py-4 shadow-lg">
@@ -672,6 +700,138 @@ export function BorrowInterface({ campaign }: { campaign: ICampaign }) {
                     ? "Calculating..."
                     : "Swap Tokens"}
           </Button>
+        </>
+      ) : stakingPool?.enabled ? (
+        <div className="w-full max-w-md space-y-4">
+          {/* Main Deposit Card */}
+          <div className="bg-[#11181C] rounded-3xl p-6 shadow-lg">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-gray-300 text-lg font-medium">Stake {campaign.symbol}</h2>
+              <Image src="/usdc.svg" alt="USDC" width={16} height={16} className="w-5 h-5" />
+            </div>
+
+            <input
+              type="text"
+              value={stakeAmount}
+              onChange={handleStakeAmountChange}
+              placeholder="0.00"
+              className="text-6xl font-light text-gray-300 mb-6 bg-transparent border-none outline-none w-full placeholder-gray-500"
+            />
+
+            <div className="flex items-center justify-between">
+              <span className="text-gray-500 text-lg">${Number(formattedUsdcAmount)?.toFixed(2)}</span>
+              <div className="flex items-center gap-3">
+                <span className="text-gray-400">
+                  {Number(stakeAmount).toFixed(2)} {campaign.symbol}
+                </span>
+                <Button
+                  onClick={handleStakeMaxClick}
+                  className="bg-[#546054b0] hover:bg-gray-600 text-gray-300 px-4 py-1 h-8 text-sm rounded-full"
+                >
+                  MAX
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Details Card */}
+          <div className="bg-[#11181C] rounded-3xl p-6 shadow-lg space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Image src="/usdc.svg" alt="USDC" width={16} height={16} className="w-5 h-5" />
+                <span className="text-gray-300">Stake {campaign.symbol}</span>
+              </div>
+              <span className="text-gray-300">{stakeAmount.toFixed(2)}</span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span className="text-gray-400">Platform OG points</span>
+              <div className="flex items-center gap-2">
+                <div className="flex">
+                  <span className="text-blue-400">✨</span>
+                  <span className="text-blue-400">✨</span>
+                </div>
+                <span className="text-blue-400 font-medium">{campaign.promotionalOgPoints}</span>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span className="text-gray-400">APY</span>
+              <span className="text-gray-300">{formattedTokenAmount.toFixed(2)}</span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span className="text-gray-400">Total staked</span>
+              <span className="text-gray-300">
+                ${formatAmount(stakingPool.totalStaked)} {campaign.symbol}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span className="text-gray-400">Reward pool</span>
+              <span className="text-gray-300">{formatAmount(stakingPool.rewardPool)}</span>
+            </div>
+          </div>
+
+          <Button
+            // onClick={() => console.log("Add Liquidity")}
+            disabled={!isConnected || !collateralAmount || !borrowAmount}
+            className="w-full bg-[#546054b0] rounded-3xl text-white py-7 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {!isConnected ? "Connect Wallet" : "Add Liquidity"}
+          </Button>
+        </div>
+      ) : campaign?.creator === connectedAddress ? (
+        <>
+          <>
+            <Card className="bg-[#19242a] border-[#3e545f] h-96 w-full px-10">
+              <div className="flex items-center justify-center w-full h-full">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="h-16 w-16 rounded-full flex justify-center items-center bg-[#546054b0] text-[#8daa98]">
+                    <X size={27} />
+                  </div>
+
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="font-medium text-lg text-[#8daa98]">Staking Not enabled for this Campaign</div>
+                    <p className="text-sm text-[#6a7c6ab0] text-center">
+                      Reach out to the team to create a staking pool for your campaign and enable staking
+                    </p>
+                    <Button
+                      size="sm"
+                      className="text-[#8daa98] hover:text-white flex items-center bg-[#25333b] h-10 w-40 rounded-lg font-semibold"
+                    >
+                      Reach out
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </>
+        </>
+      ) : (
+        <>
+          <Card className="bg-[#19242a] border-[#3e545f] h-96 w-full px-10">
+            <div className="flex items-center justify-center w-full h-full">
+              <div className="flex flex-col items-center gap-4">
+                <div className="h-16 w-16 rounded-full flex justify-center items-center bg-[#546054b0] text-[#8daa98]">
+                  <X size={27} />
+                </div>
+
+                <div className="flex flex-col items-center gap-4">
+                  <div className="font-medium text-lg text-[#8daa98]">Staking Not enabled for this Campaign</div>
+                  <p className="text-sm text-[#6a7c6ab0]">Let the owner know you need this feature</p>
+                  <div className="flex items-center gap-4">
+                    <div className="bg-[#546054b0] text-[#8daa98] w-14 h-14 rounded-full flex justify-center items-center transition-transform hover:scale-y-110 hover:scale-x-110 active:scale-x-150">
+                      <ThumbsUp />
+                    </div>
+                    <div className="bg-[#546054b0] text-[#8daa98] w-14 h-14 rounded-full flex justify-center items-center transition-transform hover:scale-y-110 hover:scale-x-110 active:scale-x-150">
+                      <ThumbsDown />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
         </>
       )}
     </div>

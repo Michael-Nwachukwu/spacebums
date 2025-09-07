@@ -16,7 +16,7 @@ export function OverviewTab({
       {/* Total Deposits Chart */}
       <div>
         {/* Chart Container */}
-        <Card className="bg-[#11181C] border-[#24353d] px-3 py-5 sm:p-6 max-h-80">
+        <Card className="bg-[#11181C] border-[#24353d] px-3 py-5 sm:p-6">
           <div className="flex items-center justify-between mb-2">
             <div className="flex flex-col items-start text-[#8daa98]">
               <h3 className="text-xs text-[#a4a6a4b0]">{!isLive ? "Total Deposits (USD)" : "Pool Price"}</h3>

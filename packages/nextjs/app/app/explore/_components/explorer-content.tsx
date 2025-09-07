@@ -189,7 +189,7 @@ export function ExplorerContent() {
                     <SelectValue placeholder="Sort by" />
                   </div>
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="text-gray-300 bg-[#11181C] border-[#3e545f]">
                   <SelectGroup>
                     <SelectItem value="all">All</SelectItem>
                     <SelectItem value="live">Live</SelectItem>
@@ -198,7 +198,7 @@ export function ExplorerContent() {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b]">
+              <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b] sm:hidden bg-transparent">
                 <Search className="h-4 w-4" />
               </Button>
             </div>
@@ -231,7 +231,7 @@ export function ExplorerContent() {
               <div>Indulge</div>
             </div>
 
-            <div className="space-y-3 overflow-x-scroll">
+            <div className="space-y-3 overflow-x-scroll max-h-96 overflow-y-scroll">
               {!campaigns
                 ? Array.from({ length: 4 }).map((_, i) => (
                     <Skeleton className="h-20 bg-[#070907]/50 w-full rounded-2xl" key={i} />

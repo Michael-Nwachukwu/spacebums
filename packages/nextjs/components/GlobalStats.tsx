@@ -21,7 +21,7 @@ const GlobalStats = () => {
         {isLoading ? (
           <Skeleton className="h-14 w-14 bg-slate-600/40" />
         ) : (
-          <span className="text-2xl sm:text-3xl font-semibold sm:font-bold">{data?.completedCampaigns || 0}</span>
+          <span className="text-2xl sm:text-3xl font-semibold sm:font-bold">{data?.totalCampaigns || 0}</span>
         )}
       </div>
       <div className="flex flex-col items-start gap-2">

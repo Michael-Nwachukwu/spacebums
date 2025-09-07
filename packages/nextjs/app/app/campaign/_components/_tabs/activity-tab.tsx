@@ -72,46 +72,12 @@ export function ActivityTab({ campaign }: { campaign: ICampaign | undefined }) {
               </div>
 
               {/* Transaction Row */}
-              {swapEvents.slice(0, 50).map((event, index) => (
-                <div key={`${event.transactionHash}-${index}`} className="grid grid-cols-5 gap-2 p-4 text-xs">
-                  <div className="py-3">
-                    <span
-                      className={`px-2 py-1 rounded-2xl text-xs font-medium ${
-                        event.type === "buy" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
-                      }`}
-                    >
-                      {event.type.toUpperCase()}
-                    </span>
-                  </div>
-                  <div className="text-gray-300 pt-2">{formatTimeAgo(event.timestamp)}</div>
-                  <span className="text-white pt-2">
-                    ${formatNumber(Math.max(event.amountInUSD, event.amountOutUSD))}
-                  </span>
-                  <a
-                    href={`https://sepolia.etherscan.io/address/${event.sender}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <div className="flex items-center gap-2 hover:bg-[#546054b0] w-3/4 py-1 px-2 rounded-2xl">
-                      <Address size="xs" address={event.sender} />
-                      <ExternalLink className="w-4 h-4 mb-1" />
-                    </div>
-                  </a>
-
-                  <a
-                    href={`https://sepolia.etherscan.io/tx/${event.transactionHash}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-mono text-gray-400 pt-2"
-                  >
-                    {formatAddress(event.transactionHash)}
-                  </a>
-                </div>
-              ))}
-
               {swapEvents.length > 0 ? (
                 swapEvents.slice(0, 50).map((event, index) => (
-                  <div key={`${event.transactionHash}-${index}`} className="grid grid-cols-5 gap-2 p-4 text-xs">
+                  <div
+                    key={`${event.transactionHash}-${index}`}
+                    className="grid grid-cols-5 gap-2 p-4 text-xs overflow-x-scroll"
+                  >
                     <div className="py-3">
                       <span
                         className={`px-2 py-1 rounded-2xl text-xs font-medium ${
@@ -189,7 +155,7 @@ export function ActivityTab({ campaign }: { campaign: ICampaign | undefined }) {
               ) : events.length > 0 ? (
                 events.reverse().map((event, index) => {
                   return (
-                    <div key={index} className="grid grid-cols-4 gap-2 p-4 text-xs">
+                    <div key={index} className="grid grid-cols-4 gap-2 p-4 text-xs overflow-x-scroll">
                       <div className="text-gray-300 pt-2">
                         {new Date(Number(event.args.timestamp) * 1000).toLocaleDateString()}
                       </div>

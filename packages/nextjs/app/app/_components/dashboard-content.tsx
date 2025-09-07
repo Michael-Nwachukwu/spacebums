@@ -206,7 +206,7 @@ export function DashboardContent() {
                       </div>
                       <SortAsc className="sm:hidden" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="text-gray-300 bg-[#11181C] border-[#3e545f]">
                       <SelectGroup>
                         <SelectItem value="active">Active</SelectItem>
                         <SelectItem value="completed">Completed</SelectItem>
@@ -214,7 +214,7 @@ export function DashboardContent() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
-                  <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b]">
+                  <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b] sm:hidden ">
                     <Search className="h-4 w-4" />
                   </Button>
                 </div>
@@ -289,7 +289,7 @@ export function DashboardContent() {
                       </div>
                       <SortAsc className="sm:hidden" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="text-gray-300 bg-[#11181C] border-[#3e545f]">
                       <SelectGroup>
                         <SelectItem value="active">Active</SelectItem>
                         <SelectItem value="completed">Completed</SelectItem>
@@ -297,7 +297,7 @@ export function DashboardContent() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
-                  <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b]">
+                  <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b] sm:hidden">
                     <Search className="h-4 w-4" />
                   </Button>
                 </div>
