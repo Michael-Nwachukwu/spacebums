@@ -41,7 +41,7 @@ export function VaultTabs({ campaign }: { campaign: ICampaign | undefined }) {
           <Button
             key={tab.id}
             variant="ghost"
-            className={`px-1.5 py-4 mr-4 sm:mr-8 rounded-none border-b-2 transition-colors hover:bg-transparent hover:text-white ${
+            className={`px-1 sm:px-2 py-4 mr-3 sm:mr-8 rounded-none border-b-2 transition-colors hover:bg-transparent hover:text-white ${
               activeTab === tab.id
                 ? "border-white text-white"
                 : "border-transparent text-gray-400 hover:text-white hover:bg-transparent"
