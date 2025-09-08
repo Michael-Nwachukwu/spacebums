@@ -1,6 +1,5 @@
 import { defineChain } from "viem";
 
-// Example: Base chain
 export const somnia = /*#__PURE__*/ defineChain({
   id: 50312,
   name: "Somnia",
