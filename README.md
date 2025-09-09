@@ -3,13 +3,18 @@
 A decentralized platform for fair and instant token launches powered by bonding curves and automated liquidity. Built on the <b>Somnia Blockchain</b>
 
 <p align="center">
-  <a href="https://www.canva.com/design/DAGyKEQkj6k/33gnmCHvvmNy6wCDzHfrMw/edit?utm_content=DAGyKEQkj6k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Pitch Deck</a> |
-  <a href="https://spacebums.lol" target="_blank">Website</a>
+  <a href="https://www.canva.com/design/DAGyKEQkj6k/33gnmCHvvmNy6wCDzHfrMw/edit?utm_content=DAGyKEQkj6k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">Pitch Deck</a> |
+  <a href="https://spacebums.lol" target="_blank">Website</a> |
+  <a href="https://www.loom.com/share/c83620a9cfea4667bfa44a0fc260aba5?sid=8ca48a5f-9167-4df9-ae34-a6dc8b8ea848" target="_blank">Demo Video</a>
 </p>
 
 🧪 Space Bums is a revolutionary decentralized token launchpad designed for fundraising that ensures instant liquidity for new token projects. This is achieved through an innovative Bancor-style bonding curve and automated, on-chain liquidity provision to our native DEX, Bumdex. The platform incentivizes early participation while prioritizing user security with a built-in refund mechanism.
 
-Visit - <a href="https://spacebums.lol" target="_blank">Spacebums</a>
+Visit the app - https://spacebums.lol
+
+Pitchdeck - https://www.canva.com/design/DAGyKEQkj6k/33gnmCHvvmNy6wCDzHfrMw/edit?utm_content=DAGyKEQkj6k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+Demo Video - https://www.loom.com/share/c83620a9cfea4667bfa44a0fc260aba5?sid=3ded5ebf-e9bc-4d74-92ae-d811ea6d620a
 
 The name Spacebums was motivate dby giving the app a space-theme as its a launchpad, its only fair the space where the rockets shoots into is occupied by space-bums, space-chums, and all space-buds 😉
 

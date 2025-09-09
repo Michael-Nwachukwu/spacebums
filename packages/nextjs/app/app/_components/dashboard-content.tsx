@@ -153,7 +153,7 @@ export function DashboardContent() {
             <div>
               <div className="text-gray-400 text-sm mb-1">OG Points ⚡️</div>
               <div className="text-4xl font-light text-white inline-flex items-center gap-2">
-                {userOgPoints} <span>✨</span>
+                {userOgPoints || 0} <span>✨</span>
               </div>
             </div>
             <div>
@@ -214,7 +214,11 @@ export function DashboardContent() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
-                  <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b] sm:hidden ">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="text-gray-400 border-[#25333b] sm:hidden bg-transparent"
+                  >
                     <Search className="h-4 w-4" />
                   </Button>
                 </div>
@@ -283,7 +287,7 @@ export function DashboardContent() {
                 <div className="flex items-center space-x-2">
                   <span className="text-gray-400 text-sm hidden sm:block">Sort:</span>
                   <Select>
-                    <SelectTrigger className="sm:border-[#171e23] border border-[#25333b] focus:border-gray-500">
+                    <SelectTrigger className="sm:border-[#171e23] border border-gray-600 focus:border-gray-500">
                       <div className="hidden sm:block">
                         <SelectValue placeholder="Sort by" />
                       </div>
@@ -297,7 +301,11 @@ export function DashboardContent() {
                       </SelectGroup>
                     </SelectContent>
                   </Select>
-                  <Button variant="outline" size="icon" className="text-gray-400 border-[#25333b] sm:hidden">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="text-gray-400 border-[#25333b] sm:hidden bg-transparent"
+                  >
                     <Search className="h-4 w-4" />
                   </Button>
                 </div>
