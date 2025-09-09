@@ -16,15 +16,15 @@ Pitchdeck - https://www.canva.com/design/DAGyKEQkj6k/33gnmCHvvmNy6wCDzHfrMw/edit
 
 Demo Video - https://www.loom.com/share/c83620a9cfea4667bfa44a0fc260aba5?sid=3ded5ebf-e9bc-4d74-92ae-d811ea6d620a
 
-The name Spacebums was motivate dby giving the app a space-theme as its a launchpad, its only fair the space where the rockets shoots into is occupied by space-bums, space-chums, and all space-buds 😉
+The name Spacebums was motivated by giving the app's space-theme, as it's a launchpad, it's only fair that the space where the rockets shoot into is occupied by space-bums, space-chums, and all space-buds 😉
 
-⚙️ Built using NextJS, RainbowKit, Foundry, Wagmi, Viem, Solidity and TypeScript.
+⚙️ Built using NextJS, RainbowKit, Foundry, Wagmi, Viem, Solidity, and TypeScript.
 
 ## 🌟 Key Features
 *   ✅ **Bonding Curve Pricing:** A dynamic Bancor-style bonding curve incentivizes early investors with lower token prices and a higher token yield per USDC. The price increases with each token purchase.
 *   💧 **Instant Liquidity:** Liquidity is automatically deployed upon meeting either of two conditions: the campaign's target raise is reached or 50% of the token supply is sold.
 *   🔄 **Automated Liquidity Provision:** The smart contract automatically creates a liquidity pool on our platform DEX, Bumdex, using a fixed ratio of 50% of the raised USDC and 25% of the total token supply.
-*   🔒 **Staking Opportunities:** Users can lock and stake their tokens on our platform once the campaing goes live and staking is enabled.
+*   🔒 **Staking Opportunities:** Users can lock and stake their tokens on our platform once the campaign goes live and staking is enabled.
 *   🛡️ **Refund Mechanism:** A built-in security feature allows users to claim a full refund of their contributed USDC if a campaign is canceled or fails to meet its funding goals.
 *   🎖️ **OG Points System:** A unique reward system that distributes 30% of all platform fees back to users who hold a high number of OG points, incentivizing active participation.
 *   🧱 **Campaign Management:** A comprehensive interface to create, fund, and manage token launch campaigns, from setting goals to monitoring progress.
@@ -35,16 +35,29 @@ The name Spacebums was motivate dby giving the app a space-theme as its a launch
 <img width="3600" height="431" alt="spacebums_architecture_hd" src="https://github.com/user-attachments/assets/9cee25a6-b21f-4a63-b6d1-bd0f071627c5" />
 
 
-### Smart Contracts
+## Smart Contracts
+
+### Spacebums Launchpad
 *   **Launchpad.sol:** The main launchpad contract containing core business logic for campaign creation, funding, and the bonding curve mechanism.
 *   **LaunchpadV2.sol:** An enhanced version of the core contract, incorporating a refined OG points distribution model and other optimizations.
 *   **Token.sol:** An ERC20 token factory contract responsible for minting the campaign-specific tokens.
 *   **LaunchpadCore.sol:** A utility library housing core mathematical functions for precise bonding curve calculations.
-* **CampaignTokenStaking.sol** The official staking contract. Campaign creators have to request acces with the team to enable them create a staking pool for their campaign and discuss insurance, collateral and apy.
-# BUMDEX
+*   **CampaignTokenStaking.sol** The official staking contract. Campaign creators have to request access with the team to enable them to create a staking pool for their campaign and discuss insurance, collateral, and APY.
+
+### BUMDEX
 *   **BumdexFactory.sol:** A factory for creating liquidity pairs.
 *   **BumdexPair.sol:** A contract to be cloned by the `BumdexFactory` representing a liquidity pair.
-*   **BumdexRouter.sol:** The Bumdex router that we communicate withe the dex on each pair..
+*   **BumdexRouter.Sol: The Bumdex router that we communicate with the Dex on each pair.
+
+### 🔐 Smart Contract Addresses
+Important: Addresses are deployments on the Somnia Network
+
+*   **Launchpad.sol:** `0xBb88E6126FdcD4ae6b9e3038a2255D66645AEA7a`
+*   **LaunchpadV2.sol:** `0x6330605C037437270aab6526263595c2297E4B5E`
+*   **CampaignTokenStaking.sol:** `0xa3a4EC5066bede3DaFa13458e578f5Deec1eA6F7`
+*   **Usdc.sol:** `0xf2A558c41e9A5505d2E5614a4AAb85f397816d00`
+*   **BumdexFactory.sol:** `0xA5f8f44614D6ADAcF924bc3143E0356d9A37A748`
+*   **BumdexRouter.sol:** `0x125933626e9AAadCDe4D776e2fC31d2e715Bc1d3`
 
 
 ### 🌐 Supported Networks
@@ -77,17 +90,6 @@ export const somnia = /*#__PURE__*/ defineChain({
   },
 });
 ```
-
-### 🔐 Smart Contract Addresses
-Important: Addresse are deployments on the Somnia Network
-
-*   **Launchpad.sol:** `0xBb88E6126FdcD4ae6b9e3038a2255D66645AEA7a`
-*   **LaunchpadV2.sol:** `0x6330605C037437270aab6526263595c2297E4B5E`
-*   **CampaignTokenStaking.sol:** `0xa3a4EC5066bede3DaFa13458e578f5Deec1eA6F7`
-*   **Usdc.sol:** `0xf2A558c41e9A5505d2E5614a4AAb85f397816d00`
-*   **BumdexFactory.sol:** `0xA5f8f44614D6ADAcF924bc3143E0356d9A37A748`
-*   **BumdexRouter.sol:** `0x125933626e9AAadCDe4D776e2fC31d2e715Bc1d3`
-
 
 ### Frontend
 *   **Dashboard:** A centralized hub for users to create new campaigns, monitor the status of active campaigns, and track their portfolio performance.
