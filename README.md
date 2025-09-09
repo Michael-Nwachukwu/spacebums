@@ -32,6 +32,9 @@ The name Spacebums was motivate dby giving the app a space-theme as its a launch
 
 ## 🏗️ Architecture
 
+<img width="3600" height="431" alt="spacebums_architecture_hd" src="https://github.com/user-attachments/assets/9cee25a6-b21f-4a63-b6d1-bd0f071627c5" />
+
+
 ### Smart Contracts
 *   **Launchpad.sol:** The main launchpad contract containing core business logic for campaign creation, funding, and the bonding curve mechanism.
 *   **LaunchpadV2.sol:** An enhanced version of the core contract, incorporating a refined OG points distribution model and other optimizations.
