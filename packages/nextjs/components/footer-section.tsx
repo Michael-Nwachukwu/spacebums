@@ -92,7 +92,9 @@ export function FooterSection() {
           </div>
         </div>
       </footer>
-      <TextHoverEffect text="SPACEBUMS" />
+      <div className="px-2 sm:px-0">
+        <TextHoverEffect text="SPACEBUMS" />
+      </div>
     </div>
   );
 }

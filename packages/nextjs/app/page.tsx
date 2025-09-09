@@ -28,7 +28,7 @@ export default function ShaderShowcase() {
         </AnimatedSection>
 
         <div className="flex justify-center items-center pb-20 pt-8 sm:pt-12 sm:pb-36 w-full text-center">
-          <div className="w-full max-w-[1024px] text-center leading-7 md:leading-10 lg:leading-[64px] font-medium text-3xl md:text-3xl lg:text-6xl bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text text-transparent">
+          <div className="w-full max-w-[1024px] text-center leading-7 md:leading-10 lg:leading-[64px] font-medium text-3xl md:text-3xl lg:text-6xl bg-gradient-to-b from-neutral-200 to-neutral-500 bg-clip-text text-transparent px-2 sm:px-0">
             {"Creators. Backers. Traders. Winning Together, that is the space we want to cruise in."}
           </div>
         </div>

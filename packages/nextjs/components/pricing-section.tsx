@@ -58,9 +58,9 @@ export function PricingSection() {
             <span className="text-white/90 text-xs font-light relative z-10">✨ For Creators, For buyers</span>
           </div>
           <h2 className="text-center text-foreground text-4xl md:text-5xl font-semibold leading-tight md:leading-[40px]">
-            Sometthing For Everyone.
+            Something For Everyone.
           </h2>
-          <p className="max-w-xl sm:max-w-2xl text-center text-muted-foreground font-light leading-tight">
+          <p className="max-w-xl sm:max-w-2xl text-center text-muted-foreground font-light leading-tight px-2 sm:px-0">
             Whether you&apos;re a builder launching your vision or a backer hunting for early gems, SpaceBums delivers
             the tools, safety, and incentives to make your journey profitable and secure.
           </p>
