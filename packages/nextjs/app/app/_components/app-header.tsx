@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Faucet from "./faucet";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 
 // Define the props type for AppHeader
@@ -42,6 +43,9 @@ export function AppHeader({ navItems, onNavClick }: AppHeaderProps) {
 
         {/* Right side - User section */}
         <div className="flex items-center space-x-4">
+          <div className="hidden sm:block">
+            <Faucet />
+          </div>
           <div className="navbar-end grow">
             <RainbowKitCustomConnectButton bg="bg-[#070907] text-gray-200" />
           </div>

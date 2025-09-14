@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import CreateCampaignDrawer from "./create-campaign-drawer";
+import Faucet from "./faucet";
 import TableRow from "./table-row";
 import { ArrowDown, BrushCleaning, ExpandIcon, Gift, Search, SortAsc } from "lucide-react";
 import { useAccount } from "wagmi";
@@ -149,22 +150,27 @@ export function DashboardContent() {
 
         {/* Net APY */}
         <div className="lg:col-span-1">
-          <div className="space-y-4">
-            <div>
-              <div className="text-gray-400 text-sm mb-1">OG Points ⚡️</div>
-              <div className="text-4xl font-light text-white inline-flex items-center gap-2">
-                {userOgPoints || 0} <span>✨</span>
+          <div className="flex justify-between items-center">
+            <div className="space-y-4">
+              <div>
+                <div className="text-gray-400 text-sm mb-1">OG Points ⚡️</div>
+                <div className="text-4xl font-light text-white inline-flex items-center gap-2">
+                  {userOgPoints || 0} <span>✨</span>
+                </div>
+              </div>
+              <div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-transparent hover:bg-transparent hover:text-white border-gray-600 text-gray-300"
+                >
+                  <Gift className="h-4 w-4 mr-2" />
+                  Rewards
+                </Button>
               </div>
             </div>
-            <div>
-              <Button
-                variant="outline"
-                size="sm"
-                className="bg-transparent hover:bg-transparent hover:text-white border-gray-600 text-gray-300"
-              >
-                <Gift className="h-4 w-4 mr-2" />
-                Rewards
-              </Button>
+            <div className="sm:hidden">
+              <Faucet />
             </div>
           </div>
         </div>
