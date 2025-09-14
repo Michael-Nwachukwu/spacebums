@@ -16,6 +16,15 @@ Pitchdeck - https://www.canva.com/design/DAGyKEQkj6k/33gnmCHvvmNy6wCDzHfrMw/edit
 
 Demo Video - https://www.loom.com/share/c83620a9cfea4667bfa44a0fc260aba5?sid=3ded5ebf-e9bc-4d74-92ae-d811ea6d620a
 
+### For Testing
+To test the application, request funds from the provided faucet bank (30 USDC every 24H) or for gas, select the STT token to visit the faucet bank for the STT native token. 
+
+<img width="1407" height="71" alt="Screenshot 2025-09-14 at 12 28 34 AM" src="https://github.com/user-attachments/assets/7b3b1ed4-479b-4710-9d11-dcfdbc7692b2" />
+
+<img width="344" height="64" alt="Screenshot 2025-09-14 at 12 28 52 AM" src="https://github.com/user-attachments/assets/49f2adb1-ee8c-4f05-9b00-596e963ec6ee" />
+
+<img width="1440" height="900" alt="Screenshot 2025-09-14 at 1 08 17 AM" src="https://github.com/user-attachments/assets/3a539507-2ea3-4e49-8db9-dc2a7ba310dc" />
+
 The name Spacebums was motivated by giving the app's space-theme, as it's a launchpad, it's only fair that the space where the rockets shoot into is occupied by space-bums, space-chums, and all space-buds 😉
 
 ⚙️ Built using NextJS, RainbowKit, Foundry, Wagmi, Viem, Solidity, and TypeScript.
